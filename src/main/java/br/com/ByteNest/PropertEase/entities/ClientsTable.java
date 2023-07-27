@@ -2,21 +2,22 @@ package br.com.ByteNest.PropertEase.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "Employees")
+@Table(name = "Clients")
 @Data
-public class EmployeesTable {
+public class ClientsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
     private String name;
-    private String role;
     private String email;
-    private String password;
+    private String phone;
+    private String preferences;
+
+
 }
