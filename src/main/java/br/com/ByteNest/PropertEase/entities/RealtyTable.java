@@ -2,15 +2,13 @@ package br.com.ByteNest.PropertEase.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.UUID;
 
 @Entity
 @Table (name = "Realties")
-@Getter
-@Setter
+@Data
 public class RealtyTable {
 
     @Id
