@@ -17,7 +17,4 @@ public class EmployeesTable {
     private String role;
     private String email;
     private String password;
-
-
-
 }
