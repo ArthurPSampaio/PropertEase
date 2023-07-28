@@ -1,6 +1,7 @@
-package br.com.ByteNest.PropertEase.entities;
+package br.com.ByteNest.PropertEase.models.clients;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
@@ -8,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "Clients")
 @Data
-public class ClientsTable {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,5 +20,11 @@ public class ClientsTable {
     private String phone;
     private String preferences;
 
-
+    public Client(RegisterClientData data) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.preferences = preferences;
+    }
 }
+

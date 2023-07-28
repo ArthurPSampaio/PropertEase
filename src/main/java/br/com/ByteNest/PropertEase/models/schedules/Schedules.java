@@ -1,5 +1,7 @@
-package br.com.ByteNest.PropertEase.entities;
+package br.com.ByteNest.PropertEase.models.schedules;
 
+import br.com.ByteNest.PropertEase.models.clients.Client;
+import br.com.ByteNest.PropertEase.models.realty.Realty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,16 +11,16 @@ import java.util.UUID;
 @Entity
 @Table(name = "Visits")
 @Data
-public class VisitsTable {
+public class Schedules {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    private ClientsTable clientId;
+    private Client clientId;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    private RealtyTable realtyId;
+    private Realty realtyId;
     private Date scheduled;
 }

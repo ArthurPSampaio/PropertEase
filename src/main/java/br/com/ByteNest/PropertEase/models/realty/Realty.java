@@ -1,4 +1,4 @@
-package br.com.ByteNest.PropertEase.entities;
+package br.com.ByteNest.PropertEase.models.realty;
 
 
 import jakarta.persistence.*;
@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Table (name = "Realty")
 @Data
-public class RealtyTable {
+public class Realty {
 
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
