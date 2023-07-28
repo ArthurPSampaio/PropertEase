@@ -19,6 +19,8 @@ public class Client {
     private String phone;
     private String preferences;
 
+    public Client() {}
+
     public Client(RegisterClientData data) {
         this.name = name;
         this.email = email;

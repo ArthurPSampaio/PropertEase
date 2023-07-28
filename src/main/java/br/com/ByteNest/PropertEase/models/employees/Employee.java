@@ -17,4 +17,14 @@ public class Employee {
     private String role;
     private String email;
     private String password;
+
+    public Employee() {
+    }
+
+    public Employee(RegisterEmployeeData data) {
+        this.name = name;
+        this.role = role;
+        this.email = email;
+        this.password = password;
+    }
 }

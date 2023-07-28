@@ -1,9 +1,8 @@
 package br.com.ByteNest.PropertEase.controllers;
 
-
-import br.com.ByteNest.PropertEase.models.clients.RegisterClientData;
-import br.com.ByteNest.PropertEase.models.clients.Client;
-import br.com.ByteNest.PropertEase.models.clients.ClientRepository;
+import br.com.ByteNest.PropertEase.models.employees.Employee;
+import br.com.ByteNest.PropertEase.models.employees.EmployeeRepository;
+import br.com.ByteNest.PropertEase.models.employees.RegisterEmployeeData;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,21 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("clients")
-public class ClientController {
+@RequestMapping("/employees")
+public class EmployeeController {
 
     @Autowired
-    private ClientRepository repository;
+    private EmployeeRepository repository;
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> register(@RequestBody @Validated RegisterClientData data) {
-        Client client = new Client(data);
-        repository.save(client);
+    public ResponseEntity<String> register(@RequestBody @Validated RegisterEmployeeData data) {
+        Employee employee = new Employee(data);
+        repository.save(employee);
 
-        return new ResponseEntity<>("Client created", HttpStatus.CREATED);
+        return new ResponseEntity<>("Employee created", HttpStatus.CREATED);
     }
 }
