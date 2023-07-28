@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Entity
-@Table (name = "Realties")
+@Table (name = "Realty")
 @Data
 public class RealtyTable {
 
