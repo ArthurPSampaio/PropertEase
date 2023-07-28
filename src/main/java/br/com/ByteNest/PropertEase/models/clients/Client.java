@@ -1,7 +1,6 @@
 package br.com.ByteNest.PropertEase.models.clients;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
