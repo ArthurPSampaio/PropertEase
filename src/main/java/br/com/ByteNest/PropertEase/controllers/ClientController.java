@@ -24,10 +24,10 @@ public class ClientController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> register(@RequestBody @Validated RegisterClientData data){
+    public ResponseEntity<String> register(@RequestBody @Validated RegisterClientData data) {
         Client client = new Client(data);
         repository.save(client);
 
-        return new ResponseEntity<> ("Client created", HttpStatus.OK);
+        return new ResponseEntity<>("Client created", HttpStatus.CREATED);
     }
 }
