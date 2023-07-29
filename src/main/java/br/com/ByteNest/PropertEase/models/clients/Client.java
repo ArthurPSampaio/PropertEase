@@ -22,10 +22,10 @@ public class Client {
     public Client() {}
 
     public Client(RegisterClientData data) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.preferences = preferences;
+        this.name = data.name();
+        this.email = data.email();
+        this.phone = data.phone();
+        this.preferences = data.preferences();
     }
 }
 
