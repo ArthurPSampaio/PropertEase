@@ -22,9 +22,9 @@ public class Employee {
     }
 
     public Employee(RegisterEmployeeData data) {
-        this.name = name;
-        this.role = role;
-        this.email = email;
-        this.password = password;
+        this.name = data.name();
+        this.role = data.role();
+        this.email = data.email();
+        this.password = data.password();
     }
 }
