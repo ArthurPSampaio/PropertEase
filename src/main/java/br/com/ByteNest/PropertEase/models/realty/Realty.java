@@ -22,5 +22,35 @@ public class Realty {
     private Integer rooms;
     private Integer bathroom;
     private Double price;
+    @Column(columnDefinition = "Integer default 1")
     private Integer status;
+
+    public Realty () {}
+
+    public Realty(RegisterRealtyData data) {
+        this.title = data.title();
+        this.description = data.description();
+        this.type = data.type();
+        this.address = data.address();
+        this.area = data.area();
+        this.rooms = data.rooms();
+        this.bathroom = data.bathroom();
+        this.price = data.price();
+    }
+
+    public void updateRealtyInfo(RegisterRealtyData data){
+        this.title = data.title();
+        this.description = data.description();
+        this.type = data.type();
+        this.address = data.address();
+        this.area = data.area();
+        this.rooms = data.rooms();
+        this.bathroom = data.bathroom();
+        this.price = data.price();
+        this.status = data.status();
+    }
+
+    public void updateRealtyStatus(RegisterRealtyData data) {
+        this.status = data.status();
+    }
 }
