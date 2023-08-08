@@ -22,8 +22,7 @@ public class Realty {
     private Integer rooms;
     private Integer bathroom;
     private Double price;
-    @Column(columnDefinition = "Integer default 1")
-    private Integer status;
+    private Integer status = 1;
 
     public Realty () {}
 
