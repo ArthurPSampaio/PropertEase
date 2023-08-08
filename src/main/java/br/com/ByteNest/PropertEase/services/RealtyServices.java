@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -21,8 +22,9 @@ public class RealtyServices {
     @Autowired
     private RealtyRepository repository;
 
+    public ResponseEntity<String> register(@RequestBody RegisterRealtyData data) {
 
-    public ResponseEntity<String> register(RegisterRealtyData data) {
+
         Realty realty = new Realty(data);
 
         repository.save(realty);
@@ -40,8 +42,14 @@ public class RealtyServices {
         return new ResponseEntity<>(realty,HttpStatus.OK);
     }
 
-    public ResponseEntity<Optional<Realty>> getRealtyById(@PathVariable UUID id) {
-        return new ResponseEntity<>(repository.findById(id), HttpStatus.OK);
+    public ResponseEntity<?> getRealtyById(@PathVariable UUID id) {
+        Optional<Realty> optionalRealty = repository.findById(id);
+        if(optionalRealty.isEmpty()) {
+        String response = "This Realty does not exist";
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(optionalRealty, HttpStatus.OK);
     }
 
     public ResponseEntity<String> updateFullRealty(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
@@ -49,10 +57,12 @@ public class RealtyServices {
 
         if(optionalRealty.isPresent()) {
             Realty realty = optionalRealty.get();
+            if(data.status() < 0 || data.status() > 2) {
+                return new ResponseEntity<>("Invalid Status", HttpStatus.BAD_REQUEST);
+            }
             realty.updateRealtyInfo(data);
-
             repository.save(realty);
-            return new ResponseEntity<>("Realty updated \n", HttpStatus.OK);
+            return new ResponseEntity<>("Realty updated", HttpStatus.OK);
         }
 
         return new ResponseEntity<>("This realty does not exist", HttpStatus.BAD_REQUEST);
@@ -63,6 +73,11 @@ public class RealtyServices {
 
         if(optionalRealty.isPresent()) {
             Realty realty = optionalRealty.get();
+
+            if(data.status() < 0 || data.status() > 2) {
+                return new ResponseEntity<>("Invalid Status", HttpStatus.BAD_REQUEST);
+            }
+
             realty.updateRealtyStatus(data);
 
             repository.save(realty);
@@ -70,5 +85,23 @@ public class RealtyServices {
         }
 
         return new ResponseEntity<>("This realty does not exist", HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> deleteRealty(@PathVariable UUID id) {
+        Optional<Realty> optionalRealty = repository.findById(id);
+
+        if(optionalRealty.isPresent()) {
+            Realty realty = optionalRealty.get();
+
+            if(realty.getStatus() != 0) {
+                return new ResponseEntity<>("This Realty cannot be deleted", HttpStatus.BAD_REQUEST);
+            } else {
+                repository.delete(realty);
+                return new ResponseEntity<>("This Realty has been deleted", HttpStatus.OK);
+            }
+
+        } else {
+            return new ResponseEntity<>("This Realty does not exist", HttpStatus.BAD_REQUEST);
+        }
     }
 }

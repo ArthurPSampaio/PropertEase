@@ -31,18 +31,26 @@ public class RealtyController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Optional<Realty>> getRealtyById(@PathVariable UUID id) {
+    public ResponseEntity<?> getRealtyById(@PathVariable UUID id) {
         return realtyServices.getRealtyById(id);
     }
 
     @PutMapping("/update/{id}")
+    @Transactional
     public ResponseEntity<String> updateFullRealty(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
         return realtyServices.updateFullRealty(id, data);
     }
 
     @PutMapping("/update_status/{id}")
+    @Transactional
     public ResponseEntity<String> updateRealtyStatus(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
         return realtyServices.updateRealtyStatus(id, data);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Transactional
+    public ResponseEntity<String> deleteRealty(@PathVariable UUID id) {
+        return realtyServices.deleteRealty(id);
     }
 }
 
