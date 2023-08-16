@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,8 +22,6 @@ public class RealtyServices {
     private RealtyRepository repository;
 
     public ResponseEntity<String> register(@RequestBody RegisterRealtyData data) {
-
-
         Realty realty = new Realty(data);
 
         repository.save(realty);
@@ -33,7 +30,6 @@ public class RealtyServices {
     }
 
     public ResponseEntity<Page<Realty>> getAll(@RequestParam(defaultValue = "0") int page) {
-
         int definedSize = 5;
 
         Pageable p = PageRequest.of(page, definedSize);
@@ -52,7 +48,7 @@ public class RealtyServices {
         return new ResponseEntity<>(optionalRealty, HttpStatus.OK);
     }
 
-    public ResponseEntity<String> updateFullRealty(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
+    public ResponseEntity<String> updateAllRealtyInfo(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
         Optional<Realty> optionalRealty = repository.findById(id);
 
         if(optionalRealty.isPresent()) {

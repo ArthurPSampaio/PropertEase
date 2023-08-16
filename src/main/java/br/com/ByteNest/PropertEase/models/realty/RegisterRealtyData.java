@@ -20,7 +20,6 @@ public record RegisterRealtyData(
         Integer bathroom,
         @NotNull
         Double price,
-        @NotNull
         Integer status
 ) {
 }
