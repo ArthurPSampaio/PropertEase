@@ -1,9 +1,16 @@
 package br.com.ByteNest.PropertEase.models.employees;
 
-public record RegisterEmployeeData(
+import jakarta.validation.constraints.NotBlank;
+
+public record RegisterEmployeeData (
+        @NotBlank
         String name,
+        @NotBlank
         String role,
+        @NotBlank
         String email,
-        String password
+        @NotBlank
+        String password,
+        Boolean deleted
 ) {
 }

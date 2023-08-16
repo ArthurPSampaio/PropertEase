@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -38,7 +37,7 @@ public class RealtyController {
     @PutMapping("/update/{id}")
     @Transactional
     public ResponseEntity<String> updateFullRealty(@PathVariable UUID id, @RequestBody RegisterRealtyData data) {
-        return realtyServices.updateFullRealty(id, data);
+        return realtyServices.updateAllRealtyInfo(id, data);
     }
 
     @PutMapping("/update_status/{id}")
